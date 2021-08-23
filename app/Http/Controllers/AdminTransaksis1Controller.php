@@ -5,12 +5,12 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminAnggotas1Controller extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminTransaksis1Controller extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "nama";
+			$this->title_field = "id";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
@@ -25,40 +25,40 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "anggotas";
+			$this->table = "transaksis";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"User","name"=>"user_id","join"=>"cms_users,name"];
-			$this->col[] = ["label"=>"Npm","name"=>"npm"];
-			$this->col[] = ["label"=>"Nama","name"=>"nama"];
-			$this->col[] = ["label"=>"Tempat Lahir","name"=>"tempat_lahir"];
-			$this->col[] = ["label"=>"Tgl Lahir","name"=>"tgl_lahir"];
-			$this->col[] = ["label"=>"Jk","name"=>"jk"];
-			$this->col[] = ["label"=>"Prodi","name"=>"prodi"];
+			$this->col[] = ["label"=>"Kode Transaksi","name"=>"kode_transaksi"];
+			$this->col[] = ["label"=>"Anggota Id","name"=>"anggota_id","join"=>"anggotas,nama"];
+			$this->col[] = ["label"=>"Buku Id","name"=>"buku_id","join"=>"bukus,judul"];
+			$this->col[] = ["label"=>"Tgl Pinjam","name"=>"tgl_pinjam"];
+			$this->col[] = ["label"=>"Tgl Kembali","name"=>"tgl_kembali"];
+			$this->col[] = ["label"=>"Status","name"=>"status"];
+			$this->col[] = ["label"=>"Ket","name"=>"ket"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'User Id','name'=>'user_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'cms_users,name'];
-			$this->form[] = ['label'=>'Npm','name'=>'npm','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Nama','name'=>'nama','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			$this->form[] = ['label'=>'Tempat Lahir','name'=>'tempat_lahir','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Tgl Lahir','name'=>'tgl_lahir','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Jk','name'=>'jk','type'=>'radio','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Laki laki;Perempuan'];
-			$this->form[] = ['label'=>'Prodi','name'=>'prodi','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Ti ( Teknik Informatika );Despar ( Destinas Pariwisata );TM ( Teknik Mekattronika )'];
+			$this->form[] = ['label'=>'Kode Transaksi','name'=>'kode_transaksi','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Anggota','name'=>'anggota_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'anggotas,nama'];
+			$this->form[] = ['label'=>'Buku','name'=>'buku_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'bukus,judul'];
+			$this->form[] = ['label'=>'Tgl Pinjam','name'=>'tgl_pinjam','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Tgl Kembali','name'=>'tgl_kembali','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Pinjam;Kembali'];
+			$this->form[] = ['label'=>'Ket','name'=>'ket','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'User Id','name'=>'user_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'cms_users,name'];
-			//$this->form[] = ['label'=>'Npm','name'=>'npm','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Nama','name'=>'nama','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			//$this->form[] = ['label'=>'Tempat Lahir','name'=>'tempat_lahir','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Tgl Lahir','name'=>'tgl_lahir','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Jk','name'=>'jk','type'=>'radio','validation'=>'required','width'=>'col-sm-10','dataenum'=>'Laki laki;Perempuan'];
-			//$this->form[] = ['label'=>'Prodi','name'=>'prodi','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Kode Transaksi','name'=>'kode_transaksi','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Anggota','name'=>'anggota_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'anggotas,nama'];
+			//$this->form[] = ['label'=>'Buku','name'=>'buku_id','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'bukus,judul'];
+			//$this->form[] = ['label'=>'Tgl Pinjam','name'=>'tgl_pinjam','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Tgl Kembali','name'=>'tgl_kembali','type'=>'date','validation'=>'required|date','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Ket','name'=>'ket','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/* 
