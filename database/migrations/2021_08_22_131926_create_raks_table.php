@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBukusTable extends Migration
+class CreateRaksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,9 @@ class CreateBukusTable extends Migration
      */
     public function up()
     {
-        Schema::create('bukus', function (Blueprint $table) {
+        Schema::create('raks', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('isbn', 25)->nullable();
-            $table->string('pengarang')->nullable();
-            $table->string('penerbit')->nullable();
-            $table->integer('tahun_terbit')->nullable();
-            $table->integer('jumlah_buku');
-            $table->text('deskripsi')->nullable();
-            $table->enum('lokasi', ['rak1', 'rak2', 'rak3'])->nullable();
-            $table->string('cover')->nullable();
+            $table->string('nama');
             $table->timestamps();
         });
     }
@@ -35,6 +27,6 @@ class CreateBukusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bukus');
+        Schema::dropIfExists('raks');
     }
 }
